@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Gallery</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-card {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .page-card:hover {
+            transform: scale(1.05);
+        }
+
+        .page-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .page-image {
+            width: 100%;
+            height: 150px; /* Adjust the height as needed */
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .page-description {
+            font-size: 1em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Gallery Container -->
+    <div id="gallery-container"></div>
+
+    <script>
+        // Example pages data with random image URLs
+        const pages = [
+            { title: 'Page 1', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 1.' },
+            { title: 'Page 2', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 2.' },
+            { title: 'Page 3', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 3.' },
+            { title: 'Page 4', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 4.' },
+            { title: 'Page 5', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 5.' },
+            { title: 'Page 6', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 6.' },
+            { title: 'Page 7', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 7.' },
+            { title: 'Page 8', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 8.' },
+            { title: 'Page 9', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 9.' },
+            { title: 'Page 10', image: 'https://via.placeholder.com/300x150', description: 'Description for Page 10.' },
+        ];
+
+        // Function to create a page card
+        function createPageCard(page) {
+            const card = document.createElement('div');
+            card.classList.add('page-card');
+
+            const image = document.createElement('img');
+            image.classList.add('page-image');
+            image.src = page.image;
+            image.alt = page.title;
+
+            const title = document.createElement('div');
+            title.classList.add('page-title');
+            title.textContent = page.title;
+
+            const description = document.createElement('div');
+            description.classList.add('page-description');
+            description.textContent = page.description;
+
+            card.appendChild(image);
+            card.appendChild(title);
+            card.appendChild(description);
+
+            // Add click event to the card (you can customize this)
+            card.addEventListener('click', () => {
+                // Add logic for what happens when a card is clicked
+                console.log(`Clicked on ${page.title}`);
+            });
+
+            return card;
+        }
+
+        // Function to populate the gallery container with page cards
+        function populateGallery() {
+            const galleryContainer = document.getElementById('gallery-container');
+
+            pages.forEach((page) => {
+                const pageCard = createPageCard(page);
+                galleryContainer.appendChild(pageCard);
+            });
+        }
+
+        // Call the function to populate the gallery on page load
+        window.onload = populateGallery;
+    </script>
+</body>
+</html>
+
